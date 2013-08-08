@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  subject: MyString
+  point: 1.5
+  year: 2013-08-08
+
+two:
+  subject: MyString
+  point: 1.5
+  year: 2013-08-08

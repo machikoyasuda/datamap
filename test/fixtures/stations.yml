@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  number: 1
+  status: false
+  established_at: 2013-08-08
+  location: 
+
+two:
+  name: MyString
+  number: 1
+  status: false
+  established_at: 2013-08-08
+  location: 
