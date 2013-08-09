@@ -1,6 +1,6 @@
 class Station
   include MongoMapper::Document
-  belongs_to :line
+
   many :datapoints
 
   key :name, String
