@@ -21,15 +21,16 @@ class Station
     # Returns @id, @code, @name, @lat, @lon, @location_type, @parent_station
 
     # Save each station with name and number attributes
+    # Convert @lat @lon to Hash key:value pair and convert to float
     stations.each do |station|
         @station = self.new
         @station.name   = station.name
         @station.number = station.id
-        @station.location = {:lat => station.lat, :lon => station.lon}
+        @station.location = {:lat => station.lat.to_f, :lon => station.lon.to_f}
         @station.status = true
         @station.save
       end
   end
-
+  # TODO: Does this run every time I load the website? Or just once?
   # TODO: Add established_at
 end
