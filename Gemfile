@@ -8,7 +8,7 @@ gem 'mongo_mapper', github: 'jnunemaker/mongomapper', ref: 'e0d7db141b2c330eb447
 gem 'bson_ext'
 
 # Data
-gem 'gtfs'
+gem 'gtfs', github:'nerdEd/gtfs', ref: 'ae93003e6273e6a620dfd024b48de062b78aa4f4'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'

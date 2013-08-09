@@ -9,6 +9,16 @@ GIT
       mongo (~> 1.8)
       plucky (~> 0.6.5)
 
+GIT
+  remote: git://github.com/nerdEd/gtfs.git
+  revision: ae93003e6273e6a620dfd024b48de062b78aa4f4
+  ref: ae93003e6273e6a620dfd024b48de062b78aa4f4
+  specs:
+    gtfs (0.2.1)
+      multi_json
+      rake
+      rubyzip
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -52,10 +62,6 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    gtfs (0.2.1)
-      multi_json
-      rake
-      rubyzip
     hike (1.2.3)
     i18n (0.6.4)
     jbuilder (1.5.0)
@@ -133,7 +139,7 @@ PLATFORMS
 DEPENDENCIES
   bson_ext
   coffee-rails (~> 4.0.0)
-  gtfs
+  gtfs!
   jbuilder (~> 1.2)
   jquery-rails
   mongo_mapper!
