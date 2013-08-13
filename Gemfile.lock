@@ -142,6 +142,7 @@ DEPENDENCIES
   gtfs!
   jbuilder (~> 1.2)
   jquery-rails
+  json
   mongo_mapper!
   rails (= 4.0.0)
   sass-rails (~> 4.0.0)

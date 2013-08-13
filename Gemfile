@@ -9,6 +9,7 @@ gem 'bson_ext'
 
 # Data
 gem 'gtfs', github:'nerdEd/gtfs', ref: 'ae93003e6273e6a620dfd024b48de062b78aa4f4'
+gem 'json'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
