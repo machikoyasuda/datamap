@@ -3,6 +3,6 @@ class Datapoint
 
   key :subject, String
   key :point, Float
-  key :year, Date
+  key :year, String
 
 end
