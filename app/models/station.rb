@@ -11,7 +11,7 @@ class Station
   key :lon, Float
 
   key :status, Boolean
-  key :established_at, Date
+  # key :established_at, Date
 
   key :fips, String
 
