@@ -7,7 +7,7 @@ gem 'rails', '4.0.0'
 gem 'mongo_mapper', github: 'jnunemaker/mongomapper', ref: 'e0d7db141b2c330eb44773ef00d1b179bbdf9209'
 gem 'bson_ext'
 
-# Data
+# Get data from GTFS, JSON, Census_API
 gem 'gtfs', github:'nerdEd/gtfs', ref: 'ae93003e6273e6a620dfd024b48de062b78aa4f4'
 gem 'json'
 gem 'census_api'
@@ -38,6 +38,10 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'database_cleaner'
+end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
