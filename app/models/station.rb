@@ -36,7 +36,7 @@ class Station
         @station.number = station.id
         @station.lat    = station.lat.to_f
         @station.lon    = station.lon.to_f
-        @station.fips  = get_fips(station.lat, station.lon)
+        @station.fips   = get_fips(station.lat, station.lon)[5..11]
         @station.status = true
         @station.save
       end
