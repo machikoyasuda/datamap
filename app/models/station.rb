@@ -11,10 +11,6 @@ class Station
   key :lon, Float
 
   key :status, Boolean
-<<<<<<< HEAD
-  # key :established_at, Date
-=======
->>>>>>> datapoint
 
   key :fips, String
 
