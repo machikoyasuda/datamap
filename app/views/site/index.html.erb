@@ -1,102 +1,58 @@
-<style>
-  body {
-    font: 12px Arial;
-  }
-
-  path {
-      stroke: steelblue;
-      stroke-width: 2;
-      fill: none;
-  }
-
-  .axis path,
-  .axis line {
-      fill: none;
-      stroke: grey;
-      stroke-width: 1;
-      shape-rendering: crispEdges;
-  }
-</style>
-
-<div id="list">
-  <ul>
-    <% @lines.each do |line| %>
-    <li><%= line.name %></li>
-    <% end %>
-  </ul>
-</div>
 <div id="chart"></div>
+<script type="text/javascript" id="chart">
+  // Set data as Array of Hashes
+  var data = [{station: "Union", datapoint: 5400},
+              {station: "Chinatown", datapoint: 4300},
+              {station: "Lincoln Heights", datapoint: 4100},
+              {station: "Arroyo", datapoint: 4400},
+              {station: "Southwest", datapoint: 3500}];
 
-<script type="text/javascript">
-  var data = [3, 6, 2, 7, 5, 2, 1, 3, 8, 9, 2, 5, 7],
-  w = 400,
-  h = 200,
-  margin = 20,
-  y = d3.scale.linear().domain([0, d3.max(data)]).range([0 + margin, h - margin]),
-  x = d3.scale.linear().domain([0, data.length]).range([0 + margin, w - margin])
+  // Set dimensions
+  var barWidth = 25;
+  var width = (barWidth + 10) * data.length;
+  var height = 200;
+  var padding = 50;
 
-  var vis = d3.select("body")
-          .append("svg:svg")
-          .attr("width", w)
-          .attr("height", h)
+  // X = station
+  var x = d3.scale.linear().domain([0, data.length]).range([0, width]);
 
-  var g = vis.append("svg:g")
-      .attr("transform", "translate(0, 200)");
+  // Y = datapoint
+  var y = d3.scale.linear().domain([0, d3.max(data, function(datum) { return datum.datapoint; })]).
+    rangeRound([0, height]);
 
-  var line = d3.svg.line()
-      .x(function(d,i) { return x(i); })
-      .y(function(d) { return -1 * y(d); })
+  // Add the canvas to the DOM, id = #chart
+  var barDemo = d3.select("#chart").
+    append("svg:svg").
+    attr("width", width).
+    attr("height", height + padding);
 
-  g.append("svg:path").attr("d", line(data));
+  // For each piece of data, add Rectangle
+  barDemo.selectAll("rect").
+    data(data).
+    enter().
+    append("svg:rect").
+    attr("x", function(datum, index) { return x(index); }).
+    attr("y", function(datum) { return height - y(datum.datapoint); }).
+    attr("height", function(datum) { return y(datum.datapoint); }).
+    attr("width", barWidth). // Width is var barWidth = 40
+    attr("fill", "#2d578b");
 
-  g.append("svg:line")
-      .attr("x1", x(0))
-      .attr("y1", -1 * y(0))
-      .attr("x2", x(w))
-      .attr("y2", -1 * y(0))
+  // Add text to yAxis
+  barDemo.selectAll("text.yAxis").
+    data(data).
+    enter().append("svg:text").
+    attr("x", function(datum, index) { return x(index) + barWidth; }).
+    attr("y", height).
+    attr("dx", -barWidth/2).
+    attr("text-anchor", "middle").
+    attr("style", "font-size: 10; font-family: Helvetica, sans-serif").
+    text(function(datum) { return datum.station;}).
+    attr("transform", "translate(0, 18)").
+    attr("class", "yAxis");
 
-  g.append("svg:line")
-      .attr("x1", x(0))
-      .attr("y1", -1 * y(0))
-      .attr("x2", x(0))
-      .attr("y2", -1 * y(d3.max(data)))
+  // Add text.xAxis
+  // Add animation
 
-  g.selectAll(".xLabel")
-      .data(x.ticks(5))
-      .enter().append("svg:text")
-      .attr("class", "xLabel")
-      .text(String)
-      .attr("x", function(d) { return x(d) })
-      .attr("y", 0)
-      .attr("text-anchor", "middle")
-
-  g.selectAll(".yLabel")
-      .data(y.ticks(4))
-      .enter().append("svg:text")
-      .attr("class", "yLabel")
-      .text(String)
-      .attr("x", 0)
-      .attr("y", function(d) { return -1 * y(d) })
-      .attr("text-anchor", "right")
-      .attr("dy", 4)
-
-  g.selectAll(".xTicks")
-      .data(x.ticks(5))
-      .enter().append("svg:line")
-      .attr("class", "xTicks")
-      .attr("x1", function(d) { return x(d); })
-      .attr("y1", -1 * y(0))
-      .attr("x2", function(d) { return x(d); })
-      .attr("y2", -1 * y(-0.3))
-
-  g.selectAll(".yTicks")
-      .data(y.ticks(4))
-      .enter().append("svg:line")
-      .attr("class", "yTicks")
-      .attr("y1", function(d) { return -1 * y(d); })
-      .attr("x1", x(-0.3))
-      .attr("y2", function(d) { return -1 * y(d); })
-      .attr("x2", x(0))
-</script>
+  </script>
 
 <p>Find me in app/views/site/index.html.erb</p>
