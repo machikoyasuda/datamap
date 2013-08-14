@@ -1,1 +1,10 @@
 <p>Find me in app/views/site/index.html.erb</p>
+
+<table>
+  <% Station.find_each(:number => /(804)(.*)/) do |station| %>
+  <tr>
+  <td><%= station.name =%></td>
+  <td><%= number_to_currency(station.datapoints[0].point) =%></td>
+  </tr>
+  <% end %>
+</table>
