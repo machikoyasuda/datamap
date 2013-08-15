@@ -1,4 +1,4 @@
-<div id="chart"></div>
+<div id="chart" style="float:right"></div>
 <script type="text/javascript" id="chart">
   // Create JavaScript data objects array to hold Ruby array of hashes
   // Set JavaScript data object as D3 data set
@@ -55,44 +55,40 @@
 
   </script>
 
-<p>Find me in app/views/site/index.html.erb</p>
-
-<table>
-  <% Station.find_each(:number => /(801)(.*)/) do |station| %>
-  <tr>
-  <td><%= station.name =%></td>
-  <td><%= number_to_currency(station.datapoints[0].point) =%></td>
-  </tr>
-  <% end %>
-</table>
-<hr>
-<table>
-  <% Station.find_each(:number => /(802)(.*)/) do |station| %>
-  <tr>
-  <td><%= station.name =%></td>
-  <td><%= number_to_currency(station.datapoints[0].point) =%></td>
-  </tr>
-  <% end %>
-</table>
-<hr>
-<table>
-  <% Station.find_each(:number => /(803)(.*)/) do |station| %>
-  <tr>
-  <td><%= station.name =%></td>
-  <td><%= number_to_currency(station.datapoints[0].point) =%></td>
-  </tr>
-  <% end %>
-</table>
-<hr>
-<table>
-  <% Station.find_each(:number => /(804)(.*)/) do |station| %>
-  <tr>
-  <td><%= station.name =%></td>
-  <td><%= number_to_currency(station.datapoints[0].point) =%></td>
-  </tr>
-  <% end %>
-</table>
-<hr>
-
-
-
+<div id="table">
+  <!--   <table>
+    <% Station.find_each(:number => /(801)(.*)/) do |station| %>
+    <tr>
+    <td><%= station.name =%></td>
+    <td><%= number_to_currency(station.datapoints[0].point) =%></td>
+    </tr>
+    <% end %>
+  </table>
+  <hr>
+  <table>
+    <% Station.find_each(:number => /(802)(.*)/) do |station| %>
+    <tr>
+    <td><%= station.name =%></td>
+    <td><%= number_to_currency(station.datapoints[0].point) =%></td>
+    </tr>
+    <% end %>
+  </table>
+  <hr>
+  <table>
+    <% Station.find_each(:number => /(803)(.*)/) do |station| %>
+    <tr>
+    <td><%= station.name =%></td>
+    <td><%= number_to_currency(station.datapoints[0].point) =%></td>
+    </tr>
+    <% end %>
+  </table>
+  <hr> -->
+  <table>
+    <% Station.find_each(:number => /(804)(.*)/) do |station| %>
+    <tr>
+    <td><%= station.name =%></td>
+    <td><%= number_to_currency(station.datapoints[0].point) =%></td>
+    </tr>
+    <% end %>
+  </table>
+</div>
