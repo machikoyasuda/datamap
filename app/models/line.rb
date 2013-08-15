@@ -19,7 +19,7 @@ class Line
         @line.name   = line.long_name
         @line.number = line.id
         # Regex (801)(.*) or ^801\d{2}$?
-        @line.stations = Station.where(station.number.regex { field: {$regex: '(801)(.*) '}} == line.number (first 3)
+        @line.stations = Station.where(station.number.regex { field: {$regex: '(801)(.*) '} } == line.number (first 3)
         # TODO: Station.all(:number => /(801)(.*)/) = line.number
         # TODO: Add Station.id where Station.all matches first 3 numbers of Line.id
         @line.save
