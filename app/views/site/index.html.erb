@@ -60,10 +60,18 @@
 <div id="sidebar">
   <ul>
     <% @lines.each do |line| %>
-    <li><%= line.name %></li>
+    <li class="line" id="<%= line.name %>"><%= line.name %></li>
     <% end %>
   <ul>
 </div>
+
+<script type="text/javascript" id="sidebar">
+  $("#<%= line.name %>").click(function() {
+    // AJAX REQUEST to GET specific JSON
+    // When AJAX request is complete,
+    // Render data
+  });
+</script>
 
 <!-- <div id="debugging-data-table">
   <table>
