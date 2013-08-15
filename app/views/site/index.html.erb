@@ -1,3 +1,4 @@
+<!-- Chart -->
 <div id="chart" style="float:right"></div>
 <script type="text/javascript" id="chart">
   // Create JavaScript data objects array to hold Ruby array of hashes
@@ -55,12 +56,21 @@
 
   </script>
 
-<div id="debugging-data-table">
-  <!--   <table>
+<!--Lines list and menu-->
+<div id="sidebar">
+  <ul>
+    <% @lines.each do |line| %>
+    <li><%= line.name %></li>
+    <% end %>
+  <ul>
+</div>
+
+<!-- <div id="debugging-data-table">
+  <table>
     <% Station.find_each(:number => /(801)(.*)/) do |station| %>
     <tr>
-    <td><%= station.name =%></td>
-    <td><%= number_to_currency(station.datapoints[0].point) =%></td>
+    <td><%= station.name %></td>
+    <td><%= number_to_currency(station.datapoints[0].point) %></td>
     </tr>
     <% end %>
   </table>
@@ -68,8 +78,8 @@
   <table>
     <% Station.find_each(:number => /(802)(.*)/) do |station| %>
     <tr>
-    <td><%= station.name =%></td>
-    <td><%= number_to_currency(station.datapoints[0].point) =%></td>
+    <td><%= station.name %></td>
+    <td><%= number_to_currency(station.datapoints[0].point) %></td>
     </tr>
     <% end %>
   </table>
@@ -77,20 +87,20 @@
   <table>
     <% Station.find_each(:number => /(803)(.*)/) do |station| %>
     <tr>
-    <td><%= station.name =%></td>
-    <td><%= number_to_currency(station.datapoints[0].point) =%></td>
+    <td><%= station.name %></td>
+    <td><%= number_to_currency(station.datapoints[0].point) %></td>
     </tr>
     <% end %>
   </table>
-  <hr> -->
+  <hr>
   <table>
     <% Station.find_each(:number => /(804)(.*)/) do |station| %>
     <tr>
-    <td><%= station.name =%></td>
-    <td><%= number_to_currency(station.datapoints[0].point) =%></td>
+    <td><%= station.name %></td>
+    <td><%= number_to_currency(station.datapoints[0].point) %></td>
     </tr>
     <% end %>
   </table>
-</div>
+</div>-->
 
 <p id="source">Source: American Community Survey, 2010</p>

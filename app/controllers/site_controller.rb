@@ -1,5 +1,8 @@
 class SiteController < ApplicationController
   def index
+    # Lines
+    @lines = Line.all
+
     # create Array of Arrays
     @stations = Array.new
     @station = Hash.new
