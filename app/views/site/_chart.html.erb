@@ -1,0 +1,6 @@
+<script>
+  // Create JavaScript data objects array to hold Ruby array of hashes
+  data = <%= @stations.to_json.html_safe %>;
+  // Create object for each, add to data array
+  console.log(data)
+</script>
