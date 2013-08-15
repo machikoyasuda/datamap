@@ -1,19 +1,14 @@
 <div id="chart"></div>
 <script type="text/javascript" id="chart">
   // Create JavaScript data objects array to hold Ruby array of hashes
-  data = <%= @stations.to_json.html_safe %>;
+  // Set JavaScript data object as D3 data set
+  var data = <%= @stations.to_json.html_safe %>;
+
   // Create object for each, add to data array
   console.log(data)
 
-  // Set data as Array of Hashes
-  var data = [{station: "Union", datapoint: 5400},
-              {station: "Chinatown", datapoint: 4300},
-              {station: "Lincoln Heights", datapoint: 4100},
-              {station: "Arroyo", datapoint: 4400},
-              {station: "Southwest", datapoint: 3500}];
-
   // Set dimensions
-  var barWidth = 25;
+  var barWidth = 10;
   var width = (barWidth + 10) * data.length;
   var height = 200;
   var padding = 50;

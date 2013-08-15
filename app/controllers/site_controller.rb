@@ -6,7 +6,7 @@ class SiteController < ApplicationController
 
     # Find each station, put name and datapoint into Hash, add to Array
     Station.find_each(:number => /(804)(.*)/) do |x|
-      @station = { "Station" => x.name, "Datapoint" => x.datapoints[0].point}
+      @station = { "station" => x.name, "datapoint" => x.datapoints[0].point}
       @stations << @station
     end
 
