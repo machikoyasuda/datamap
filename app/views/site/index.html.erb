@@ -1,5 +1,10 @@
 <div id="chart"></div>
 <script type="text/javascript" id="chart">
+  // Create JavaScript data objects array to hold Ruby array of hashes
+  data = <%= @stations.to_json.html_safe %>;
+  // Create object for each, add to data array
+  console.log(data)
+
   // Set data as Array of Hashes
   var data = [{station: "Union", datapoint: 5400},
               {station: "Chinatown", datapoint: 4300},
@@ -93,13 +98,6 @@
   <% end %>
 </table>
 <hr>
-
-<script>
-  // Create JavaScript data objects array to hold Ruby array of hashes
-  data = <%= @stations.to_json.html_safe %>;
-  // Create object for each, add to data array
-  console.log(data)
-</script>
 
 
 
