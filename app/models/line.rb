@@ -42,10 +42,6 @@ class Line
         @line.number        = line.id[0..2]
         x      = get_station(@line.number)
         @line.stations = x
-        puts @line.stations
-        puts @line.number
-        puts "****************************"
-        puts x
         @line.save
       end
   end
