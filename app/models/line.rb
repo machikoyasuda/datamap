@@ -19,10 +19,6 @@ class Line
     array = Array.new
     line_station_numbers = lookup[line.to_i]
     line_station_objects = Station.all(:number => line_station_numbers)
-    line_station_objects.each do |object|
-      array << object.id
-    end
-    array
     line_station_objects
   end
 
@@ -40,8 +36,7 @@ class Line
         @line.color         = prepend + line.color
         @line.name          = line.long_name[6..-8]
         @line.number        = line.id[0..2]
-        x      = get_station(@line.number)
-        @line.stations = x
+        @line.stations      = get_station(@line.number)
         @line.save
       end
   end
