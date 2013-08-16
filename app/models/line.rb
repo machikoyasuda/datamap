@@ -1,5 +1,6 @@
 class Line
   include MongoMapper::Document
+  key :station_ids, Array
   many :stations, :in => :station_ids
 
   key :name, String
@@ -15,7 +16,14 @@ class Line
       805 => ["80214","80213","80212","80211","80210","80209","80215", "80216"],
       806 => ["80121","80122","80123","80124","80125","80126","80127","80128","80129","80130","80131", "80132"]
     }
-    lookup[line]
+    array = Array.new
+    line_station_numbers = lookup[line.to_i]
+    line_station_objects = Station.all(:number => line_station_numbers)
+    line_station_objects.each do |object|
+      array << object.id
+    end
+    array
+    line_station_objects
   end
 
   def self.load_lines
@@ -27,11 +35,17 @@ class Line
 
     # Save each line with name and number attributes
     lines.each do |line|
-        @line         = Line.new
-        prepend       = "#"
-        @line.color   = prepend + line.color
-        @line.name    = line.long_name[6..-8]
-        @line.number  = line.id[0..2]
+        @line               = Line.new
+        prepend             = "#"
+        @line.color         = prepend + line.color
+        @line.name          = line.long_name[6..-8]
+        @line.number        = line.id[0..2]
+        x      = get_station(@line.number)
+        @line.stations = x
+        puts @line.stations
+        puts @line.number
+        puts "****************************"
+        puts x
         @line.save
       end
   end
