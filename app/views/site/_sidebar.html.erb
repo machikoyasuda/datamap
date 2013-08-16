@@ -1,16 +1,14 @@
-<!--Lines list and menu-->
 <div id="sidebar">
   <ul>
     <% @lines.each do |line| %>
-    <li class="line" id="<%= line.name %>"><%= line.name %></li>
+    <li class="line" id="<%= line.name %>"><%= line.name %> / <%= line.number %></li>
+    <!--<li><% link_to "ajax call", @thing, remote:true, method: :get %></li>-->
     <% end %>
   <ul>
 </div>
 
-<script type="text/javascript" id="sidebar">
-  $("#<%= line.name %>").click(function() {
+<!--<script type="text/javascript" id="sidebar">
     // AJAX REQUEST to GET specific JSON
     // When AJAX request is complete,
     // Render data
-  });
-</script>
+</script>-->
