@@ -1,5 +1,7 @@
 Datamap::Application.routes.draw do
-  get "line/stats"
+  # go to root, at site#index
   root 'site#index'
-  get 'line/:id/stats' => 'line#stats'
+
+  # return JSON of line param[:id] data
+  get 'line/:id/stats' => 'line#stats', defaults: { format: :json }
 end

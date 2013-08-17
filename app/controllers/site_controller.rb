@@ -3,17 +3,5 @@ class SiteController < ApplicationController
     # Lines
     @lines = Line.all
 
-    # create Array of Arrays
-    @stations = Array.new
-    @station = Hash.new
-
-    # Find each station, put name and datapoint into Hash, add to Array
-    Station.find_each(:number => /(804)(.*)/) do |x|
-      @station = { "station" => x.name, "datapoint" => x.datapoints[0].point}
-      @stations << @station
-    end
-
-    # TODO: Need to DRY RegEx for station lines
-    # TODO: Need to DRY datapoints[0]
   end
 end
