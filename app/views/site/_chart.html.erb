@@ -1,56 +1,84 @@
-<div id="chart" style="float:right"></div>
+<div id="chart" style="float:left"></div>
+<div id="sidebar" style="float:right">
+  <ul>
+    <% @lines.each do |line| %>
+    <li id="<%= line.name[0...-5] %>"><%= line.name %></li>
+    <% end %>
+  <ul>
+</div>
+
+<script type="text/javascript" id="sidebar">
+  jQuery(document).ready(function ($) {
+    // Write AJAX GET request for each line class on-click
+    <% @lines.each do |line| %>
+      $("body").on("click", "#<%= line.name[0...-5] %>", function(){
+        $.ajax({
+          method: "GET",
+          url: "/line/<%= line.id %>/stats",
+          contentType: 'application/json',
+          dataType: 'json',
+          success: function(data) {
+            var data = data;
+            d3Chart(data);
+          }
+        }); // End
+        // Send AJAX data to D3 data variable
+        }); // End on-click
+  <% end %>
+  });
+</script>
+
 <script type="text/javascript" id="chart">
   // Create JavaScript data objects array to hold Ruby array of hashes
   // Set JavaScript data object as D3 data set
-  var data = <%= @stations.to_json.html_safe %>;
-
+  // var data = <%= @stations.to_json.html_safe %>;
   // Create object for each, add to data array
-  console.log(data)
+  var d3Chart = function(data){
 
-  // Set dimensions
-  var barWidth = 10;
-  var width = (barWidth + 10) * data.length;
-  var height = 200;
-  var padding = 50;
+      // Set dimensions
+      var barWidth = 10;
+      var width = (barWidth + 10) * data.length;
+      var height = 200;
+      var padding = 50;
 
-  // X = station
-  var x = d3.scale.linear().domain([0, data.length]).range([0, width]);
+      // X = station
+      var x = d3.scale.linear().domain([0, data.length]).range([0, width]);
+      // Y = datapoint
+      var y = d3.scale.linear().domain([0, d3.max(data, function(datum) { return datum.datapoint; })]).
+        rangeRound([0, height]);
 
-  // Y = datapoint
-  var y = d3.scale.linear().domain([0, d3.max(data, function(datum) { return datum.datapoint; })]).
-    rangeRound([0, height]);
+      // Add the canvas to the DOM, id = #chart
+      var barDemo = d3.select("#chart").
+        append("svg:svg").
+        attr("width", width).
+        attr("height", height + padding);
 
-  // Add the canvas to the DOM, id = #chart
-  var barDemo = d3.select("#chart").
-    append("svg:svg").
-    attr("width", width).
-    attr("height", height + padding);
+      // For each piece of data, add Rectangle
+      barDemo.selectAll("rect").
+        data(data).
+        enter().
+        append("svg:rect").
+        attr("x", function(datum, index) { return x(index); }).
+        attr("y", function(datum) { return height - y(datum.datapoint); }).
+        attr("height", function(datum) { return y(datum.datapoint); }).
+        attr("width", barWidth). // Width is var barWidth = 40
+        attr("fill", "#2d578b");
 
-  // For each piece of data, add Rectangle
-  barDemo.selectAll("rect").
-    data(data).
-    enter().
-    append("svg:rect").
-    attr("x", function(datum, index) { return x(index); }).
-    attr("y", function(datum) { return height - y(datum.datapoint); }).
-    attr("height", function(datum) { return y(datum.datapoint); }).
-    attr("width", barWidth). // Width is var barWidth = 40
-    attr("fill", "#2d578b");
+      // Add text to yAxis
+      barDemo.selectAll("text.yAxis").
+        data(data).
+        enter().append("svg:text").
+        attr("x", function(datum, index) { return x(index) + barWidth; }).
+        attr("y", height).
+        attr("dx", -barWidth/2).
+        attr("text-anchor", "middle").
+        attr("style", "font-size: 10; font-family: Helvetica, sans-serif").
+        text(function(datum) { return datum.station;}).
+        attr("transform", "translate(0, 18)").
+        attr("class", "yAxis");
 
-  // Add text to yAxis
-  barDemo.selectAll("text.yAxis").
-    data(data).
-    enter().append("svg:text").
-    attr("x", function(datum, index) { return x(index) + barWidth; }).
-    attr("y", height).
-    attr("dx", -barWidth/2).
-    attr("text-anchor", "middle").
-    attr("style", "font-size: 10; font-family: Helvetica, sans-serif").
-    text(function(datum) { return datum.station;}).
-    attr("transform", "translate(0, 18)").
-    attr("class", "yAxis");
-
-  // Add text.xAxis
-  // Add animation
+      // Add text.xAxis
+      // Add animation
+  }
 
 </script>

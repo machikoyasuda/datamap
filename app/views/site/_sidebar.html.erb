@@ -1,14 +1,29 @@
 <div id="sidebar">
   <ul>
     <% @lines.each do |line| %>
-    <li class="line" id="<%= line.name %>"><%= line.name %> / <%= line.number %></li>
-    <!--<li><% link_to "ajax call", @thing, remote:true, method: :get %></li>-->
+    <li id="<%= line.name[0...-5] %>"><%= line.name %></li>
     <% end %>
   <ul>
 </div>
 
-<!--<script type="text/javascript" id="sidebar">
-    // AJAX REQUEST to GET specific JSON
-    // When AJAX request is complete,
-    // Render data
-</script>-->
+
+<script type="text/javascript" id="sidebar">
+  jQuery(document).ready(function ($) {
+    // Write AJAX GET request for each line class on-click
+    <% @lines.each do |line| %>
+      $("body").on("click", "#<%= line.name[0...-5] %>", function(){
+        alert("Send AJAX request to" + " /line/<%= line.id %>/stats ");
+        $.ajax({
+          method: "GET",
+          url: "/line/<%= line.id %>/stats",
+          contentType: 'application/json',
+          dataType: 'json',
+          success: function(data) {
+            var data = data;
+          }
+        }); // End
+        // Send AJAX data to D3 data variable
+        }); // End on-click
+  <% end %>
+  });
+</script>
