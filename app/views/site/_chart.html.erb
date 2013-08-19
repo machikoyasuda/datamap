@@ -12,7 +12,9 @@
     // Write AJAX GET request for each line class on-click
     <% @lines.each do |line| %>
       $("body").on("click", "#<%= line.name[0...-5] %>", function(){
+        // Empty #chart div first
         $("#chart").empty();
+        // Get data
         $.ajax({
           method: "GET",
           url: "/line/<%= line.id %>/stats",
