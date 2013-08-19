@@ -27,28 +27,73 @@ html, body {
 }
 
 body {
-  background-color: #FCFAF2;
+  background-color: #FDF6E3;
+}
+
+hr {
+  border: 0;
+  border-bottom: 1px dashed #fff;
+  height: 2px;
 }
 
 #sidebar {
-  background-color: #C5C7C9;
   font-family: 'Open Sans', sans-serif;
+  border-right: 1px #fff solid;
+}
+
+.square {
+  border: 1px #fff solid;
+  margin-right: 5px;
+}
+
+#sidebar ul {
+  margin-left: -35px;
+  margin-right: -10px;
+  list-style-type: none;
+  line-height: 30px;
+}
+
+#sidebar li {
+  color: #333;
+}
+
+#sidebar li:hover {
+  background-color: #fff;
+  cursor: pointer;
 }
 
 #chart {
-  background-color: #d3d3d3;
   font-family: 'Open Sans', sans-serif;
 }
 
+/** type **/
+
 p {
   font-family: 'Gentium Book Basic', serif;
+  color: #333;
   line-height: 25px;
 }
 
 p.byline {
   font-family: 'Open Sans', sans-serif;
   text-transform: uppercase;
+  border-bottom: 1px solid #333;
+}
+
+p.intro {
   line-height: 30px;
+}
+
+a {
+  color: #b58900;
+  text-decoration: none;
+  border-bottom: 0px solid #d3d3d3;
+  transition: all 0.25s ease-in-out 0s;
+}
+
+a:hover {
+  border-bottom: 1px solid #d3d3d3;
+  transition: all 0.25s ease-in-out 0s;
 }
 
 h1 {
@@ -56,6 +101,20 @@ h1 {
   font: 700 'Open Sans';
 }
 
+h2 {
+  font-family: 'Open Sans', sans-serif;
+}
+
+h3 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.colophon ul li{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+}
 footer {
   font-family: 'Open Sans', serif;
 }
