@@ -1,55 +1,54 @@
-  <div class="unit whole">
-    <h2>Thanks</h2>
-    <p>Thanks to <a href="https://github.com/dangrover" title="Dan Grover’s GitHub">Dan Grover</a>, <a href="https://twitter.com/mikez" title="Michael Belfrage’s Twitter">Michael Belfrage</a> and <a href="http://larrybuch.com/about.html" title="Larry Buchanan">Larry Buchanan</a> for their initial projects of San Francisco and New York. After I saw their work, I wanted to make a similar graphic for Los Angeles, using similar data, methods and technologies.</p>
+<div class="explainer unit golden-large">
+  <h2>Thanks</h2>
+  <p>Thanks to <a href="https://github.com/dangrover" title="Dan Grover’s GitHub">Dan Grover</a>, <a href="https://twitter.com/mikez" title="Michael Belfrage’s Twitter">Michael Belfrage</a> and <a href="http://larrybuch.com/about.html" title="Larry Buchanan">Larry Buchanan</a> for their initial projects of San Francisco and New York. A special shout out to my General Assembly Los Angeles teachers and classmates — thank you for keeping me sane and motivated.</p>
 
-    <p>This project was created as a part of General Assembly Los Angeles web development immersive class. Thank you to Charles, Baxter, Delmer, Tim and Ira. Thank you to all my fellow students.</p>
-  </div>
+  <h2>Goals & plans</h2>
+  <p>I started this project with the focus on challenging myself and expanding my skillset. I aimed to continue learning Ruby on Rails controllers and models, along with NoSQL database modeling. On the front-end side, I tried out D3 for the first time.</p>
+  <p>I would like to continue developing this app to store and show more datasets, like Median Household Income change from various years, or the rate of public transit use. I will also add a D3 map. I didn’t write as many tests as I would have liked, so I will write some more.</p>
 
-  <div class="explainer unit golden-large">
-    <h2>Goals & plans</h2>
-    <p>I started this project with the focus on challenging myself and expanding my skillset. I aimed to continue learning Ruby on Rails controllers and models, along with NoSQL database modeling. On the front-end side, I tried out D3 for the first time.</p>
-    <p>I would like to continue developing this app to store and show more datasets, like Median Household Income change from various years, or the rate of public transit use. I will also add a D3 map. I didn’t write as many tests as I would have liked, so I will write some more.</p>
+  <h2>Methodology</h2>
+  <p>The data reporting consisted of two parts: Getting the geographic data — latitude and longitude coordinates of each station, along with its Census tract ID number and pulling the appropriate Census data.</p>
+  <p>To get the station locations and lines correctly inputted into my database, I first pulled Metro Los Angeles light rail line stop and route information came from Metro’s GTFS feed, with the help of a Ruby GTFS wrapper. The wrapper pulls the data from Metro’s zipped files — which includes all buses and rail lines and stops. I filtered and selected only the rail stations. Then, I used the Federal Communication Commission’s API to get the Federal Information Processing Standards (FIPS) code for each station’s latitude and longitude location.</p>
+  <p>From the FIPS id, I filtered out only the Census tract ID number. I plugged that number into the U.S. Census Bureau API to get the 2010 American Community Survey, 1-year-estimate table on Median Household Income at that particular tract.</p>
+</div>
 
-    <h2>Methodology</h2>
-    <p>The data reporting consisted of two parts: Getting the geographic data — latitude and longitude coordinates of each station, along with its Census tract ID number and pulling the appropriate Census data.</p>
-    <p>To get the station locations and lines correctly inputted into my database, I first pulled Metro Los Angeles light rail line stop and route information came from Metro’s GTFS feed, with the help of a Ruby GTFS wrapper. The wrapper pulls the data from Metro’s zipped files — which includes all buses and rail lines and stops. I filtered and selected only the rail stations. Then, I used the Federal Communication Commission’s API to get the Federal Information Processing Standards (FIPS) code for each station’s latitude and longitude location.</p>
-    <p>From the FIPS id, I filtered out only the Census tract ID number. I plugged that number into the U.S. Census Bureau API to get the 2010 American Community Survey, 1-year-estimate table on Median Household Income at that particular tract.</p>
-  </div>
+<div class="colophon unit golden-small">
+  <h2>About me</h2>
+  <p>I am a journalist learning web development in Los Angeles. Follow me on <a href="http://twitter.com/machikoyasuda">Twitter</a>. See this project on <a href="http://github.com/machikoyasuda" title="Machiko Yasuda's GitHub">GitHub</a>. Read my <a href="http://machikoyasuda.herokuapp.com">writing</a>.</p>
 
-  <div class="colophon unit golden-small">
-    <h2>Colophon</h2>
-    <h3>Reporting & data:</h3>
-    <ul>
-      <li><a href="https://github.com/nerdEd/gtfs" title="Ruby wrapper for General Transit Feed Specification">Ruby wrapper for General Transit Feed Specification</a></li>
-      <li><a href="http://developer.metro.net" title="Metro Los Angeles API">Metro Los Angeles API</a></li>
-      <li><a href="http://www.fcc.gov/developers/census-block-conversions-api" title="Federal Communication Commission Census Block Conversion API">Federal Communication Commission Census Block Conversion API</a></li>
-      <li><a href="http://census.gov/developers/data/" title="U.S. Census Bureau API">U.S. Census Bureau API for the American Community Survey</a></li>
-    </ul>
+  <h2>Colophon</h2>
+  <h3>Reporting & data:</h3>
+  <ul>
+    <li><a href="https://github.com/nerdEd/gtfs" title="Ruby wrapper for General Transit Feed Specification">Ruby wrapper for General Transit Feed Specification</a></li>
+    <li><a href="http://developer.metro.net" title="Metro Los Angeles API">Metro Los Angeles API</a></li>
+    <li><a href="http://www.fcc.gov/developers/census-block-conversions-api" title="Federal Communication Commission Census Block Conversion API">Federal Communication Commission Census Block Conversion API</a></li>
+    <li><a href="http://census.gov/developers/data/" title="U.S. Census Bureau API">U.S. Census Bureau API for the American Community Survey</a></li>
+  </ul>
 
-    <h3>Back-end & database:</h3>
-    <ul>
-      <li>Ruby on Rails</li>
-      <li><a href="http://mongodb.org">MongoDB</a> with <a href="http://mongomapper.com">MongoMapper</a></li>
-      <li><a href="http://genghisapp.com">Genghis App</a></li>
-    </ul>
+  <h3>Back-end & database:</h3>
+  <ul>
+    <li>Ruby on Rails</li>
+    <li><a href="http://mongodb.org">MongoDB</a> with <a href="http://mongomapper.com">MongoMapper</a></li>
+    <li><a href="http://genghisapp.com">Genghis App</a></li>
+  </ul>
 
-    <h3>Front-end & visualization:</h3>
-    <ul>
-      <li><a href="http://d3js.org">D3</a> for data-driven charts</li>
-      <li><a href="http://cobyism.com/gridism/"Gridism</a> for a responsive grid template</li>
-      <li><a href="http://google.com/webfonts">Google Web Fonts</a></li>
-      <li><a href="http://sass-lang.com/">Sass</a> for better CSS</li>
-      <li>jQuery and JavaScript</li>
-    </ul>
+  <h3>Front-end & visualization:</h3>
+  <ul>
+    <li><a href="http://d3js.org">D3</a> for data-driven charts</li>
+    <li><a href="http://cobyism.com/gridism/"Gridism</a> for a responsive grid template</li>
+    <li><a href="http://google.com/webfonts">Google Web Fonts</a></li>
+    <li><a href="http://sass-lang.com/">Sass</a> for better CSS</li>
+    <li>jQuery and JavaScript</li>
+  </ul>
 
-    <h3>Development:</h3>
-    <ul>
-      <li><a href="http://pivotaltracker.com">Pivotal Tracker</a> for project management</li>
-      <li><a href="http://git-scm.com/">Git</a> for version control</li>
-      <li><a href="https://www.relishapp.com/rspec">Rspec</a> for behavior-driven testing</li>
-      <li><a href="http://sublimetext.com">Sublime Text 3</a></li>
-      <li><a href="http://iterm2.com">iTerm 2</a></li>
-      <li>UNIX</li>
-      <li>Mac OS X</li>
-    </ul>
-  </div>
+  <h3>Development:</h3>
+  <ul>
+    <li><a href="http://pivotaltracker.com">Pivotal Tracker</a> for project management</li>
+    <li><a href="http://git-scm.com/">Git</a> for version control</li>
+    <li><a href="https://www.relishapp.com/rspec">Rspec</a> for behavior-driven testing</li>
+    <li><a href="http://sublimetext.com">Sublime Text 3</a></li>
+    <li><a href="http://iterm2.com">iTerm 2</a></li>
+    <li>UNIX</li>
+    <li>Mac OS X</li>
+  </ul>
+</div>
