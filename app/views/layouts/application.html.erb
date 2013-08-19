@@ -13,14 +13,8 @@
 <body>
   <div class="content">
     <div class="grid wrap">
-    <div class="whole">
       <%= render 'layouts/header' %>
-    </div>
-    <div class="grid">
-      <%= render 'site/sidebar' %>
-      <%= render 'site/chart' %>
-    </div>
-    <%= yield %>
+      <%= yield %>
     </div>
     <div class="push"></div>
   </div>

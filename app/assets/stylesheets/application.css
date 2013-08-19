@@ -42,6 +42,13 @@ body {
 
 p {
   font-family: 'Gentium Book Basic', serif;
+  line-height: 25px;
+}
+
+p.byline {
+  font-family: 'Open Sans', sans-serif;
+  text-transform: uppercase;
+  line-height: 30px;
 }
 
 h1 {
@@ -50,6 +57,8 @@ h1 {
 }
 
 footer {
-  font-family: 'Gentium Book Basic', serif;
+  font-family: 'Open Sans', serif;
 }
+
+
 
