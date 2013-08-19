@@ -1,29 +1,7 @@
-<div id="sidebar">
+<div id="sidebar" class="unit one-third">
   <ul>
     <% @lines.each do |line| %>
     <li id="<%= line.name[0...-5] %>"><%= line.name %></li>
     <% end %>
   <ul>
 </div>
-
-
-<script type="text/javascript" id="sidebar">
-  jQuery(document).ready(function ($) {
-    // Write AJAX GET request for each line class on-click
-    <% @lines.each do |line| %>
-      $("body").on("click", "#<%= line.name[0...-5] %>", function(){
-        alert("Send AJAX request to" + " /line/<%= line.id %>/stats ");
-        $.ajax({
-          method: "GET",
-          url: "/line/<%= line.id %>/stats",
-          contentType: 'application/json',
-          dataType: 'json',
-          success: function(data) {
-            var data = data;
-          }
-        }); // End
-        // Send AJAX data to D3 data variable
-        }); // End on-click
-  <% end %>
-  });
-</script>

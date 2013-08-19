@@ -11,3 +11,11 @@
  *= require_self
  *= require_tree .
  */
+
+#sidebar {
+  background-color: #C5C7C9;
+}
+
+#chart {
+  background-color: #d3d3d3;
+}

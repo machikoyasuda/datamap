@@ -1,11 +1,4 @@
-<div id="chart" style="float:left; width: 420px">Choose a line to start exploring.</div>
-<div id="sidebar" style="float:right">
-  <ul>
-    <% @lines.each do |line| %>
-    <li id="<%= line.name[0...-5] %>"><%= line.name %></li>
-    <% end %>
-  <ul>
-</div>
+<div id="chart" class="unit two-thirds">Choose a line to start exploring.</div>
 
 <script type="text/javascript" id="sidebar">
   jQuery(document).ready(function ($) {

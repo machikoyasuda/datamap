@@ -3,15 +3,22 @@
 <head>
   <title>Datamap</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <link rel="stylesheet" href="app/assets/stylesheets/gridism/gridism.css">
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
   <%= render 'layouts/shim' %>
 </head>
 <body>
-  <%= render 'layouts/header' %>
-  <%= render 'site/chart' %>
-  <%= render 'site/map' %>
+  <div class="grid wrap">
+  <div class="whole">
+    <%= render 'layouts/header' %>
+  </div>
+  <div class="grid">
+    <%= render 'site/sidebar' %>
+    <%= render 'site/chart' %>
+  </div>
   <%= yield %>
   <%= render 'layouts/footer' %>
+  </div>
 </body>
 </html>
