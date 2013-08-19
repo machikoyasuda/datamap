@@ -4,21 +4,26 @@
   <title>Datamap</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <link rel="stylesheet" href="app/assets/stylesheets/gridism/gridism.css">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:700,400' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Gentium+Book+Basic' rel='stylesheet' type='text/css'>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
   <%= render 'layouts/shim' %>
 </head>
 <body>
-  <div class="grid wrap">
-  <div class="whole">
-    <%= render 'layouts/header' %>
+  <div class="content">
+    <div class="grid wrap">
+    <div class="whole">
+      <%= render 'layouts/header' %>
+    </div>
+    <div class="grid">
+      <%= render 'site/sidebar' %>
+      <%= render 'site/chart' %>
+    </div>
+    <%= yield %>
+    </div>
+    <div class="push"></div>
   </div>
-  <div class="grid">
-    <%= render 'site/sidebar' %>
-    <%= render 'site/chart' %>
-  </div>
-  <%= yield %>
-  <%= render 'layouts/footer' %>
-  </div>
+  <div class="grid wrap whole site-footer"><%= render 'layouts/footer' %></div>
 </body>
 </html>

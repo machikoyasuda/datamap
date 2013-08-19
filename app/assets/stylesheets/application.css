@@ -11,11 +11,45 @@
  *= require_self
  *= require_tree .
  */
+html, body {
+  height: 100%;
+}
+
+.content {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -60px;
+}
+
+.push {
+  height: 60px;
+}
+
+body {
+  background-color: #FCFAF2;
+}
 
 #sidebar {
   background-color: #C5C7C9;
+  font-family: 'Open Sans', sans-serif;
 }
 
 #chart {
   background-color: #d3d3d3;
+  font-family: 'Open Sans', sans-serif;
 }
+
+p {
+  font-family: 'Gentium Book Basic', serif;
+}
+
+h1 {
+  font-family: 'Open Sans', sans-serif;
+  font: 700 'Open Sans';
+}
+
+footer {
+  font-family: 'Gentium Book Basic', serif;
+}
+
