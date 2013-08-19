@@ -2,13 +2,13 @@
   <div id="sidebar" class="unit one-third">
     <ul>
       <% @lines.each do |line| %>
-      <li id="<%= line.name[0...-5] %>"><span class="square" style="background-color: <%= line.color %>; display: inline-block; height: 14px; width: 14px"></span><%= line.name %></li>
+      <li id="<%= line.name[0...-5] %>"><span class="square" style="background-color: <%= line.color %>"></span><%= line.name %></li>
       <% end %>
-    <ul>
+    </ul>
   </div>
 
   <div id="chart" class="unit two-thirds">
-    Choose a line to start exploring.
+    <center><h4>Choose a line to begin exploring Los Angeles and its six Metro light rail lines.</h4></center>
   </div>
 </div>
 
@@ -26,12 +26,13 @@
           contentType: 'application/json',
           dataType: 'json',
           success: function(data) {
-            var data = data;
+            // Save data as data, color from each loop
+            data = data;
+            color = "<%= line.color %>";
             // d3Chart method fills chart
             d3Chart(data);
           }
-        }); // End
-        // Send AJAX data to D3 data variable
+        }); // End AJAX call
         }); // End on-click
   <% end %>
   });
@@ -41,49 +42,51 @@
   // Create object for each, add to data array
   var d3Chart = function(data){
 
-      // Set dimensions
-      var barWidth = 10;
-      var width = (barWidth + 10) * data.length;
-      var height = 200;
-      var padding = 50;
+    // Set dimensions
+    var barWidth = 10;
+    var width = (barWidth + 10) * data.length;
+    var height = 200;
+    var padding = 50;
 
-      // X = station
-      var x = d3.scale.linear().domain([0, data.length]).range([0, width]);
-      // Y = datapoint
-      var y = d3.scale.linear().domain([0, d3.max(data, function(datum) { return datum.datapoint; })]).
-        rangeRound([0, height]);
+    // X = station
+    var x = d3.scale.linear().domain([0, data.length]).range([0, width]);
+    // Y = datapoint
+    var y = d3.scale.linear().domain([0, d3.max(data, function(datum) { return datum.datapoint; })]).
+      rangeRound([0, height]);
 
-      // Add the canvas to the DOM, id = #chart
-      var barDemo = d3.select("#chart").
-        append("svg:svg").
-        attr("width", width).
-        attr("height", height + padding);
+    // Add the canvas to the DOM, id = #chart
+    var bar = d3.select("#chart").
+      append("svg:svg").
+      attr("width", width).
+      attr("height", height + padding);
 
-      // For each piece of data, add Rectangle
-      barDemo.selectAll("rect").
-        data(data).
-        enter().
-        append("svg:rect").
-        attr("x", function(datum, index) { return x(index); }).
-        attr("y", function(datum) { return height - y(datum.datapoint); }).
-        attr("height", function(datum) { return y(datum.datapoint); }).
-        attr("width", barWidth). // Width is var barWidth = 40
-        attr("fill", "#2d578b");
+    // For each piece of data, add Rectangle
+    bar.selectAll("rect").
+      data(data).
+      enter().
+      append("svg:rect").
+      attr("x", function(datum, index) { return x(index); }).
+      attr("y", function(datum) { return height - y(datum.datapoint); }).
+      attr("height", function(datum) { return y(datum.datapoint); }).
+      attr("width", barWidth). // Width is var barWidth = 10
+      attr("fill", color);
 
-      // Add text to yAxis
-      barDemo.selectAll("text.yAxis").
-        data(data).
-        enter().append("svg:text").
-        attr("x", function(datum, index) { return x(index) + barWidth; }).
-        attr("y", height).
-        attr("dx", -barWidth/2).
-        attr("text-anchor", "middle").
-        attr("style", "font-size: 10; font-family: Helvetica, sans-serif").
-        text(function(datum) { return datum.station;}).
-        attr("transform", "translate(0, 18)").
-        attr("class", "yAxis");
+    // Add text to yAxis
+    bar.selectAll(".yAxis").
+      data(data).
+      enter().append("svg:text").
+      attr("class", "yAxis").
+      //attr("x", function(datum, index) { return x(index) + barWidth; }).
+      //attr("y", height).
+      attr("text-anchor", "middle").
+      attr("dx", function(datum, index) { return barWidth * index; }).
+      attr("dy", "1em").
+      attr("style", "font-size: 8; font-family: Helvetica, sans-serif").
+      text(function(datum) { return datum.station;}).
+      //attr("transform", "translate(0, 18)").
+      attr('transform', function(d,i,j) { return 'rotate(-90 0,0)' });
 
-      // Add text.xAxis
-      // Add animation
+    // Add text.xAxis
+    // Add animation
   }
 </script>

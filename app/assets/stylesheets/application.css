@@ -62,6 +62,12 @@ hr {
   cursor: pointer;
 }
 
+#sidebar span {
+  display: inline-block;
+  height: 12px;
+  width: 12px
+}
+
 #chart {
   font-family: 'Open Sans', sans-serif;
 }
