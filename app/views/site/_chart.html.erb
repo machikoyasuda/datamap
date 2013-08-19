@@ -1,4 +1,4 @@
-<div id="chart" style="float:left"></div>
+<div id="chart" style="float:left; width: 420px">Choose a line to start exploring.</div>
 <div id="sidebar" style="float:right">
   <ul>
     <% @lines.each do |line| %>
@@ -12,6 +12,7 @@
     // Write AJAX GET request for each line class on-click
     <% @lines.each do |line| %>
       $("body").on("click", "#<%= line.name[0...-5] %>", function(){
+        $("#chart").empty();
         $.ajax({
           method: "GET",
           url: "/line/<%= line.id %>/stats",
@@ -19,6 +20,7 @@
           dataType: 'json',
           success: function(data) {
             var data = data;
+            // d3Chart method fills chart
             d3Chart(data);
           }
         }); // End
@@ -29,9 +31,6 @@
 </script>
 
 <script type="text/javascript" id="chart">
-  // Create JavaScript data objects array to hold Ruby array of hashes
-  // Set JavaScript data object as D3 data set
-  // var data = <%= @stations.to_json.html_safe %>;
   // Create object for each, add to data array
   var d3Chart = function(data){
 
