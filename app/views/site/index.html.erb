@@ -12,6 +12,29 @@
   </div>
 </div>
 
+<style>
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+  }
+
+  .axis text {
+    font-family: sans-serif;
+    font-size: 12px;
+  }
+
+  .label {
+    font-size: 13px;
+    font-style: italic;
+  }
+
+  .xAxis {
+    font-size: 12px;
+  }
+</style>
+
 <script type="text/javascript" id="sidebar">
   jQuery(document).ready(function ($) {
     // Write AJAX GET request for each line class on-click
@@ -30,7 +53,7 @@
             data = data;
             color = "<%= line.color %>";
             // d3Chart method fills chart
-            // d3Chart(data);
+            d3Chart(data);
           }
         }); // End AJAX call
         }); // End on-click
@@ -42,11 +65,13 @@
   // Create object for each, add to data array
   var d3Chart = function(data){
 
+    console.log(data);
+
     // Set dimensions
-    var barWidth = 18;
+    var barWidth = 15;
     var width = (barWidth + 10) * data.length;
     var height = 360;
-    var padding = 50;
+    var padding = 20;
 
     // X = station
     var x = d3.scale.linear()
@@ -54,59 +79,81 @@
                     .range([0, width]);
     // Y = datapoint
     var y = d3.scale.linear()
-                    .domain([0, d3.max(data, function(datum) { return datum.datapoint; })])
-                    .rangeRound([0, height]);
+                    .domain([0, d3.max(data, function(datum) { return datum.datapoint;})])
+                    .rangeRound([height, 0]);
+
 
     // Add the canvas to the DOM, id = #chart
     var bar = d3.select("#chart")
       .append("svg:svg")
-      .attr("width", width)
-      .attr("height", height + padding);
+      .attr("width", width + padding)
+      .attr("height", height + padding + padding);
 
     // For each piece of data, add Rectangle
-    bar.selectAll("rect").
-      data(data).
-      enter().
-      append("svg:rect").
-      attr("x", function(datum, index) { return x(index); }).
-      attr("y", function(datum) { return height - y(datum.datapoint); }).
-      attr("height", function(datum) { return y(datum.datapoint); }).
-      attr("width", barWidth). // Width is var barWidth = 10
-      attr("fill", color);
+    bar.selectAll("rect")
+      .data(data)
+      .enter()
+      .append("svg:rect")
+      .attr("x", function(datum, index) { return 70 + x(index); })
+      .attr("y", function(datum) { return height - y(datum.datapoint); })
+      .attr("height", function(datum) { return y(datum.datapoint); })
+      .attr("width", barWidth)
+      .attr("fill", color);
 
-    // Add text to yAxis
+    // Add text to xAxis
     // bar.selectAll(".xAxis").
     //   data(data).
     //   enter().append("svg:text").
-    //   attr("class", "yAxis").
+    //   attr("class", "xAxis").
+    //   attr("text-anchor", "middle").
     //   attr("x", function(datum, index) { return x(index) + barWidth; }).
     //   attr("y", height).
-    //   attr("text-anchor", "middle").
-    //   attr("dx", function(datum, index) { return barWidth * index; }).
-    //   attr("dy", "1em").
-    //   attr("style", "font-size: 8; font-family: Helvetica, sans-serif").
-    //   text(function(datum) { return datum.station;}).
-    //   attr("transform", "translate(0, 18)");
+    //   attr("dx", function(datum, index) { return index; }).
+    //   attr("dy", "3em").
+    //   attr("transform", function(datum, index) { return "translate(-" + x(index) +",200) rotate(-90) "; }).
+    //   text(function(datum) { return datum.station;});
+
+    // Add xAxis
+    var xAxis = d3.svg.axis()
+                      .scale(x)
+                      .orient("bottom");
+    // Add xAxis text
+    bar.selectAll("text")
+      .data(data)
+      .enter().append("svg:text")
+      .attr("x",  function(datum, index) { return x(index) + barWidth; })
+      .attr("y", height)
+      .attr("dx", -barWidth/2)
+      .attr("class", "xAxis")
+      .attr("text-anchor", "middle")
+      .attr("fill", "white")
+      .text(function(datum) { return datum.station;});
+
+    // Call xAxis
+    bar.append("g")
+       .attr("class", "axis")
+       .attr("transform", "translate(70," + (height) + ")")
+       .call(xAxis);
 
     // Add yAxis
     var yAxis = d3.svg.axis()
                       .scale(y)
-                      .orient('right')
-                      .ticks(5);
+                      .orient('left')
+                      .tickFormat(d3.format(",.0f"));
     bar.append("g")
         .attr("class", "axis")
-        .attr("transform", "translate(" + padding + ",0)")
+        .attr("transform", "translate(70,0)")
         .call(yAxis);
 
-    // var xAxis
-    var xAxis = d3.svg.axis()
-                      .scale(x)
-                      .orient('bottom');
-    bar.append("g")
-       .attr("class", "axis")
-       .attr("transform", "translate(0,360)")
-       .call(xAxis);
-
+    // Add yAxis label
+    bar.append("text")
+       .attr("class", "label")
+       .attr("text-anchor", "end")
+       .attr("y", -15)
+       .attr("x", -20)
+       .attr("dy", "1.9em")
+       .attr("transform", "rotate(-90)")
+       .text("Median household income, inflation-adjusted (dollars)");
 
   }
 </script>
