@@ -8,7 +8,7 @@
   </div>
 
   <div id="chart" class="unit two-thirds">
-    <center><h4>Choose a line to begin exploring Los Angeles and its six Metro light rail lines.</h4></center>
+    <center><h4>Choose a line to begin exploring Los Angeles median household income at its six Metro lines.</h4></center>
   </div>
 </div>
 
@@ -30,7 +30,7 @@
             data = data;
             color = "<%= line.color %>";
             // d3Chart method fills chart
-            d3Chart(data);
+            // d3Chart(data);
           }
         }); // End AJAX call
         }); // End on-click
@@ -49,10 +49,13 @@
     var padding = 50;
 
     // X = station
-    var x = d3.scale.linear().domain([0, data.length]).range([0, width]);
+    var x = d3.scale.linear()
+                    .domain([0, data.length])
+                    .range([0, width]);
     // Y = datapoint
-    var y = d3.scale.linear().domain([0, d3.max(data, function(datum) { return datum.datapoint; })]).
-      rangeRound([0, height]);
+    var y = d3.scale.linear()
+                    .domain([0, d3.max(data, function(datum) { return datum.datapoint; })])
+                    .rangeRound([0, height]);
 
     // Add the canvas to the DOM, id = #chart
     var bar = d3.select("#chart")
@@ -72,21 +75,38 @@
       attr("fill", color);
 
     // Add text to yAxis
-    bar.selectAll(".yAxis").
-      data(data).
-      enter().append("svg:text").
-      attr("class", "yAxis").
-      //attr("x", function(datum, index) { return x(index) + barWidth; }).
-      //attr("y", height).
-      attr("text-anchor", "middle").
-      attr("dx", function(datum, index) { return barWidth * index; }).
-      attr("dy", "1em").
-      attr("style", "font-size: 8; font-family: Helvetica, sans-serif").
-      text(function(datum) { return datum.station;}).
-      //attr("transform", "translate(0, 18)").
-      attr('transform', function(d,i,j) { return 'rotate(-90 0,0)' });
+    // bar.selectAll(".xAxis").
+    //   data(data).
+    //   enter().append("svg:text").
+    //   attr("class", "yAxis").
+    //   attr("x", function(datum, index) { return x(index) + barWidth; }).
+    //   attr("y", height).
+    //   attr("text-anchor", "middle").
+    //   attr("dx", function(datum, index) { return barWidth * index; }).
+    //   attr("dy", "1em").
+    //   attr("style", "font-size: 8; font-family: Helvetica, sans-serif").
+    //   text(function(datum) { return datum.station;}).
+    //   attr("transform", "translate(0, 18)");
 
-    // Add text.xAxis
-    // Add animation
+    // Add yAxis
+    var yAxis = d3.svg.axis()
+                      .scale(y)
+                      .orient('right')
+                      .ticks(5);
+    bar.append("g")
+        .attr("class", "axis")
+        .attr("transform", "translate(" + padding + ",0)")
+        .call(yAxis);
+
+    // var xAxis
+    var xAxis = d3.svg.axis()
+                      .scale(x)
+                      .orient('bottom');
+    bar.append("g")
+       .attr("class", "axis")
+       .attr("transform", "translate(0,360)")
+       .call(xAxis);
+
+
   }
 </script>
