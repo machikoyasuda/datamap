@@ -36,29 +36,36 @@ hr {
   height: 2px;
 }
 
+/** sidebar **/
+
 #sidebar {
   font-family: 'Open Sans', sans-serif;
   border-right: 1px #fff solid;
+  height: 400px;
 }
 
-.square {
-  border: 1px #fff solid;
+#sidebar .circle {
+  width: 20px;
+  height: 20px;
   margin-right: 5px;
+  margin-bottom: -2px ;
+  border-radius: 50%;
 }
 
 #sidebar ul {
   margin-left: -35px;
   margin-right: -10px;
   list-style-type: none;
-  line-height: 30px;
+  line-height: 45px;
 }
 
 #sidebar li {
   color: #333;
+  font-size: 20px;
 }
 
 #sidebar li:hover {
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.82);
   cursor: pointer;
 }
 
@@ -68,7 +75,10 @@ hr {
   width: 12px
 }
 
+/** chart **/
+
 #chart {
+  padding-left: 50px;
   font-family: 'Open Sans', sans-serif;
 }
 

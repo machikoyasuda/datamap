@@ -2,7 +2,7 @@
   <div id="sidebar" class="unit one-third">
     <ul>
       <% @lines.each do |line| %>
-      <li id="<%= line.name[0...-5] %>"><span class="square" style="background-color: <%= line.color %>"></span><%= line.name %></li>
+      <li id="<%= line.name[0...-5] %>"><span class="circle" style="background-color: <%= line.color %>"></span><%= line.name %></li>
       <% end %>
     </ul>
   </div>
@@ -43,9 +43,9 @@
   var d3Chart = function(data){
 
     // Set dimensions
-    var barWidth = 10;
+    var barWidth = 18;
     var width = (barWidth + 10) * data.length;
-    var height = 200;
+    var height = 360;
     var padding = 50;
 
     // X = station
@@ -55,10 +55,10 @@
       rangeRound([0, height]);
 
     // Add the canvas to the DOM, id = #chart
-    var bar = d3.select("#chart").
-      append("svg:svg").
-      attr("width", width).
-      attr("height", height + padding);
+    var bar = d3.select("#chart")
+      .append("svg:svg")
+      .attr("width", width)
+      .attr("height", height + padding);
 
     // For each piece of data, add Rectangle
     bar.selectAll("rect").
