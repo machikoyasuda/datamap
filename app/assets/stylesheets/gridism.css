@@ -111,10 +111,6 @@
   }
 }
 
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
 /* Set up some rules to govern the grid */
 .grid {
   display: block;
