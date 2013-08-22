@@ -85,6 +85,7 @@ GEM
     mongo (1.9.1)
       bson (~> 1.9.1)
     multi_json (1.7.9)
+    newrelic_rpm (3.6.6.147)
     plucky (0.6.6)
       mongo (~> 1.5)
     polyglot (0.3.3)
@@ -170,6 +171,7 @@ DEPENDENCIES
   jquery-rails
   json
   mongo_mapper!
+  newrelic_rpm
   rails (= 4.0.0)
   rails_12factor
   rspec-rails
