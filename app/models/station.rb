@@ -45,7 +45,7 @@ class Station
   # Load all stations and one datapoint
   def self.load_stations
     # Get all Metro stations as objects from Metro API
-    source = GTFS::Source.build("http://media.metro.net/developer/gtfs/google_transit.zip", {strict: false})
+    source = GTFS::Source.build("http://media.metro.net/developer/gtfs/google_transit_2013-08-15.zip", {strict: false})
     stations = Array.new
 
     # Filter and select first mention of Metro Rail stops only
