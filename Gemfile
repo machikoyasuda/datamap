@@ -39,6 +39,9 @@ gem 'jbuilder', '~> 1.2'
 # New Relic tracking for Heroku
 gem 'newrelic_rpm'
 
+# Thin server
+gem 'thin'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -51,7 +54,6 @@ end
 
 group :production do
   gem 'rails_12factor'
-  gem 'thin'
 end
 
 # Use ActiveModel has_secure_password
