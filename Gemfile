@@ -36,6 +36,7 @@ gem 'jbuilder', '~> 1.2'
 
 # New Relic for Heroku
 gem 'newrelic_rpm'
+gem 'thin'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
