@@ -16,12 +16,5 @@ test:
   database: datamap_test
   w: 0
 
-# set these environment variables on your prod server
 production:
-  <<: *defaults
-  # host: mongodb://heroku_app17650051:gvguppjav2egun7u65ragm0h44@ds039768.mongolab.com:39768/heroku_app17650051
-  host: ds041238.mongolab.com
-  port: 41238
-  database: datamaplive
-  username: <%= ENV['MONGO_USERNAME'] %>
-  password: <%= ENV['MONGO_PASSWORD'] %>
+  uri: <%= ENV['MONGOLAB_URI'] %>
