@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+
+# Set Ruby version
 ruby '2.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -34,9 +36,8 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
-# New Relic for Heroku
+# New Relic tracking for Heroku
 gem 'newrelic_rpm'
-gem 'thin'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -56,7 +57,7 @@ end
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
