@@ -2,7 +2,7 @@
   <div id="sidebar" class="unit one-third">
     <ul>
       <% @lines.each do |line| %>
-      <li id="<%= line.name[0...-5] %>"><span class="circle" style="background-color: <%= line.color %>"></span><%= line.name %></li>
+      <li class="line_name" id="<%= line.name[0...-5] %>" data-line-id="<%= line.id %>" data-line-color="<%= line.color %>"><span class="circle" style="background-color: <%= line.color %>"></span><%= line.name %></li>
       <% end %>
     </ul>
   </div>
@@ -38,26 +38,25 @@
 <script type="text/javascript" id="sidebar">
   jQuery(document).ready(function ($) {
     // Write AJAX GET request for each line class on-click
-    <% @lines.each do |line| %>
-      $("body").on("click", "#<%= line.name[0...-5] %>", function(){
+      $("body").on("click", '.line_name', function(){
         // Empty #chart div first
         $("#chart").empty();
         // Get data
         $.ajax({
           method: "GET",
-          url: "/line/<%= line.id %>/stats",
+          url: "/line/" + $(this).attr("data-line-id") + "/stats",
           contentType: 'application/json',
           dataType: 'json',
           success: function(data) {
             // Save data as data, color from each loop
             data = data;
-            color = "<%= line.color %>";
+            color = $(this).attr("data-line-color");
+            console.log(color);
             // d3Chart method fills chart
             d3Chart(data);
           }
         }); // End AJAX call
         }); // End on-click
-  <% end %>
   });
 </script>
 
