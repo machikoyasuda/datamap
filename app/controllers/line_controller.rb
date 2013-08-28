@@ -1,17 +1,19 @@
 class LineController < ApplicationController
   def stats
-    # Data: create Array of Arrays
+    # Pass in function to each station of that Line
+    # For each station at a specific Line
+    # Create hash of name and datapoint
     @stations = Line.find_by_id(params[:id]).stations.map do |station|
       { "station" => station.name, "datapoint" => station.datapoints[0].point}
     end
 
     # Render JSON for AJAX request
     render json: @stations
+
+    # TODO: DRY up Datapoints
   end
 
   def download
-    require 'csv'
-
     @lines = Line.all
     @stations = Array.new
     @data = Hash.new
@@ -26,5 +28,7 @@ class LineController < ApplicationController
 
     # Render JSON
     render json: @stations
+
+    # TODO: Create CSV and Spreadsheets
   end
 end
