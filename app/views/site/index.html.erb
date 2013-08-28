@@ -38,27 +38,27 @@
 <script type="text/javascript" id="sidebar">
   jQuery(document).ready(function ($) {
     // Write AJAX GET request for each line class on-click
-      $("body").on("click", '.line_name', function(){
-        // Empty #chart div first
-        $("#chart").empty();
-        // console.log($(this).attr("data-line-id"));
-        // console.log($(this).attr("data-line-color"));
-        color = $(this).attr("data-line-color");
-        // console.log(color);
-        // Get data
-        $.ajax({
-          method: "GET",
-          url: "/line/" + $(this).attr("data-line-id") + "/stats",
-          contentType: 'application/json',
-          dataType: 'json',
-          success: function(data) {
-            data = data;
-            color = color;
-            // d3Chart method fills chart
-            d3Chart(data);
-          }
-        }); // End AJAX call
-        }); // End on-click
+    $("body").on("click", '.line_name', function(){
+      // Empty #chart div first
+      $("#chart").empty();
+      // console.log($(this).attr("data-line-id"));
+      // console.log($(this).attr("data-line-color"));
+      color = $(this).attr("data-line-color");
+      // console.log(color);
+      // Get data
+      $.ajax({
+        method: "GET",
+        url: "/line/" + $(this).attr("data-line-id") + "/stats",
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function(data) {
+          data = data;
+          color = color;
+          // d3Chart method fills chart
+          d3Chart(data);
+        }
+      }); // End AJAX call
+    }); // End on-click
   });
 </script>
 

@@ -1,13 +1,8 @@
 class LineController < ApplicationController
   def stats
     # Data: create Array of Arrays
-    @stations = Array.new
-    @data = Hash.new
-
-    # Find a Line and all of its stations, format data into Hash, add to Array
-    Line.find_by_id(params[:id]).stations.each do |station|
-      @data = { "station" => station.name, "datapoint" => station.datapoints[0].point}
-      @stations << @data
+    @stations = Line.find_by_id(params[:id]).stations.map do |station|
+      { "station" => station.name, "datapoint" => station.datapoints[0].point}
     end
 
     # Render JSON for AJAX request
